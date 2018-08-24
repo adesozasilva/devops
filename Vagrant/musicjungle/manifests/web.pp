@@ -32,6 +32,13 @@ exec { "musicjungle":
     require => Service["mysql"]
 }
 
+exec { "mysql-password" :
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'musicjungle'@'%' IDENTIFIED BY 'minha-senha';\" musicjungle",
+    unless  => "mysql -umusicjungle -pminha-senha musicjungle",
+    path => "/usr/bin",
+    require => Exec["musicjungle"]
+}
+
 file { "/var/lib/tomcat7/webapps/vraptor-musicjungle.war":
     source => "/vagrant/manifests/vraptor-musicjungle.war",
     owner => "tomcat7",
