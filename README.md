@@ -39,7 +39,7 @@ Agora será necessário exceutar o comando `vagrant reload`, para adicionarmos a
 
 Começaremos pelo Tomcat, para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos os comandos como se estivessemos dentro no terminal linux, então precisamos configurar os comandos de instalação:
 
-`
+```
 exec { "apt-update":
   command => "/usr/bin/apt-get update"
 }
@@ -49,7 +49,7 @@ package { ["openjdk-7-jre", "tomcat7"]:
     require => Exec["apt-update"]
 }
 
-`
+```
 
 Note que para a instalação do tomcat, também foi necessário a instalação da jdk7, no caso estamos usando a Open JDK.
 
@@ -57,13 +57,68 @@ Note que para a instalação do tomcat, também foi necessário a instalação d
 Agora iremos instalar o mysql, e configuraremos do mesmo jeito que fizemos com o tomcat
 
 
-`
+```
 package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
     ensure => installed,
     require => Exec["apt-update"]
 }
 
-`
+```
+
+Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar
+
+```
+exec { "musicjungle":
+    command => "mysqladmin -uroot create musicjungle",
+    unless => "mysql -u root musicjungle",
+    path => "/usr/bin",
+    require => Service["mysql"]
+}
+
+exec { "mysql-password" :
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'musicjungle'@'%' IDENTIFIED BY 'minha-senha';\" musicjungle",
+    unless  => "mysql -umusicjungle -pminha-senha musicjungle",
+    path => "/usr/bin",
+    require => Exec["musicjungle"]
+}
+
+```
+
+E finalmente com o nosso ambiente montado podemos automatizar o deploy da nossa aplicação, para isso é necessário garantir que os serviços do tomcat e mysql estejam funcionando
+
+
+```
+service { "tomcat7":
+    ensure => running,
+    enable => true,
+    hasstatus => true,
+    hasrestart => true,
+    require => Package["tomcat7"]    
+}
+
+service { "mysql":
+    ensure => running,
+    enable => true,
+    hasstatus => true,
+    hasrestart => true,
+    require => Package["mysql-server"]
+}
+
+```
+
+Por último podemos adicionar a task para enviarmos o nosso arquivo war para o tomcat
+
+```
+file { "/var/lib/tomcat7/webapps/vraptor-musicjungle.war":
+    source => "/vagrant/manifests/vraptor-musicjungle.war",
+    owner => "tomcat7",
+    group => "tomcat7",
+    mode => 0644,
+    require => Package["tomcat7"],
+    notify => Service["tomcat7"]
+}
+
+```
 
 
 
