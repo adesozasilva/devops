@@ -18,7 +18,6 @@ Vagrant.configure("2") do |config|
     config.vm.define :web do |web_config|
     end     
 end
-
 ```
 
 Depois de criado o arquivo entre no terminal e rode o seguinte comando `vagrant up`, isso fará com que o vagrant criei a máquina virtual e instale o ubuntu.
@@ -33,7 +32,6 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configuar um 
       web_config.vm.network "private_network", ip: "192.168.56.10"
     end 
    ...
-  
 ```
 Agora será necessário exceutar o comando `vagrant reload`, para adicionarmos a configuração do IP e assim temos a máquina instalada e funcionando, e vamos para as instalações do Tomcat e Mysql.
 
@@ -48,7 +46,6 @@ package { ["openjdk-7-jre", "tomcat7"]:
     ensure => installed,
     require => Exec["apt-update"]
 }
-
 ```
 
 Note que para a instalação do tomcat, também foi necessário a instalação da jdk7, no caso estamos usando a Open JDK.
@@ -62,7 +59,6 @@ package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
     ensure => installed,
     require => Exec["apt-update"]
 }
-
 ```
 
 Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar
@@ -81,7 +77,6 @@ exec { "mysql-password" :
     path => "/usr/bin",
     require => Exec["musicjungle"]
 }
-
 ```
 
 E finalmente com o nosso ambiente montado podemos automatizar o deploy da nossa aplicação, para isso é necessário garantir que os serviços do tomcat e mysql estejam funcionando:
@@ -103,7 +98,6 @@ service { "mysql":
     hasrestart => true,
     require => Package["mysql-server"]
 }
-
 ```
 
 Por último podemos adicionar a task para enviarmos o nosso arquivo war para o tomcat
@@ -117,9 +111,7 @@ file { "/var/lib/tomcat7/webapps/vraptor-musicjungle.war":
     require => Package["tomcat7"],
     notify => Service["tomcat7"]
 }
-
 ```
-
 ...
 
 
