@@ -1,15 +1,15 @@
 # Devops
 
-Criar ambiente virtual com Tomcat e  MySQL utilizando o Vagrant
+Criando ambiente virtual com Tomcat e  MySQL utilizando o Vagrant
 
 Requisitos:
 
 - Baixar o vagrant no site: https://www.vagrantup.com/downloads.html
 
-- Será necessário também baixar o Virtural Box(https://www.virtualbox.org/wiki/Downloads)
+- Será necessário também o Virtural Box(https://www.virtualbox.org/wiki/Downloads)
 
 
-Criar a pasta do projeto, no meu caso a pasta vai ser chamar confin, depois dentro do diretório, será necessário criar o arquivo Vagrant
+Criar a pasta do projeto, no meu caso a pasta vai ser chamar confin, depois dentro do diretório, será necessário criar o arquivo chamado Vagrant
 
 
 ```
@@ -25,7 +25,7 @@ Depois de criado o arquivo entre no terminal e rode o seguinte comando `vagrant 
 
 Com a máquina instalada, você pode se conectar utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que estamos dentro de um ambiente linux.
 
-Agora precisamos instalar o Tomcat e mysql, mas antes disso iremos configuar um ip para depois termos acesso a máquina, então adicionaremos o seguinte trecho no arquivo Vagrant
+Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configuar um ip para depois termos acesso a máquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
    ...
@@ -35,9 +35,9 @@ Agora precisamos instalar o Tomcat e mysql, mas antes disso iremos configuar um 
    ...
   
 ```
-Agora será necessário exceutar o comando `vagrant reload`, para adicionarmos a configuração do IP e então temos a máquina instalado e funcionando, e então podemos partir para a instalação do Tomcat e Mysql.
+Agora será necessário exceutar o comando `vagrant reload`, para adicionarmos a configuração do IP e assim temos a máquina instalada e funcionando, e vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat, para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos os comandos como se estivessemos dentro no terminal linux, então precisamos configurar os comandos de instalação:
+Começaremos pelo Tomcat. Para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos os comandos como se estivessemos dentro no terminal linux, então precisamos configurar os comandos de instalação:
 
 ```
 exec { "apt-update":
@@ -69,22 +69,22 @@ Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplica
 
 ```
 exec { "musicjungle":
-    command => "mysqladmin -uroot create musicjungle",
-    unless => "mysql -u root musicjungle",
+    command => "mysqladmin -uroot create confin",
+    unless => "mysql -u root confin",
     path => "/usr/bin",
     require => Service["mysql"]
 }
 
 exec { "mysql-password" :
-    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'musicjungle'@'%' IDENTIFIED BY 'minha-senha';\" musicjungle",
-    unless  => "mysql -umusicjungle -pminha-senha musicjungle",
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'confin'@'%' IDENTIFIED BY 'minha-senha';\" confin",
+    unless  => "mysql -uconfin -pminha-senha confin",
     path => "/usr/bin",
     require => Exec["musicjungle"]
 }
 
 ```
 
-E finalmente com o nosso ambiente montado podemos automatizar o deploy da nossa aplicação, para isso é necessário garantir que os serviços do tomcat e mysql estejam funcionando
+E finalmente com o nosso ambiente montado podemos automatizar o deploy da nossa aplicação, para isso é necessário garantir que os serviços do tomcat e mysql estejam funcionando:
 
 
 ```
