@@ -9,7 +9,7 @@ Requisitos:
 - Será necessário também baixar o Virtural Box(https://www.virtualbox.org/wiki/Downloads)
 
 
-Criar a pasta do projeto, no meu caso a pasta vai ser chamar musicjungle, depois dentro do diretório, será necessário criar o arquivo Vagrant
+Criar a pasta do projeto, no meu caso a pasta vai ser chamar confin, depois dentro do diretório, será necessário criar o arquivo Vagrant
 
 
 ```
