@@ -64,18 +64,18 @@ package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
 Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar
 
 ```
-exec { "musicjungle":
-    command => "mysqladmin -uroot create confin",
-    unless => "mysql -u root confin",
+exec { "controlefinanceiro":
+    command => "mysqladmin -uroot cre7ate controle_financeiro",
+    unless => "mysql -u root controle_financeiro",
     path => "/usr/bin",
     require => Service["mysql"]
 }
 
 exec { "mysql-password" :
-    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'confin'@'%' IDENTIFIED BY 'minha-senha';\" confin",
-    unless  => "mysql -uconfin -pminha-senha confin",
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'controlefinanceiro'@'%' IDENTIFIED BY '123456';\" controlefinanceiro",
+    unless  => "mysql -ucontrolefinanceiro -p123456 controlefinanceiro",
     path => "/usr/bin",
-    require => Exec["musicjungle"]
+    require => Exec["controlefinanceiro"]
 }
 ```
 
@@ -103,8 +103,8 @@ service { "mysql":
 Por último podemos adicionar a task para enviarmos o nosso arquivo war para o tomcat
 
 ```
-file { "/var/lib/tomcat7/webapps/vraptor-musicjungle.war":
-    source => "/vagrant/manifests/vraptor-musicjungle.war",
+file { "/var/lib/tomcat7/webapps/controle-financeiro.war":
+    source => "/vagrant/manifests/controle-financeiro.war",
     owner => "tomcat7",
     group => "tomcat7",
     mode => 0644,
