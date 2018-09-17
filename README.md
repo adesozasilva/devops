@@ -9,7 +9,7 @@ Requisitos:
 - Será necessário também o download do Virtural Box (https://www.virtualbox.org/wiki/Downloads)
 
 
-Criar a pasta com o nome do nosso projeto, no meu caso a pasta vai ser chamar confinan, depois dentro desse diretório, será necessário criar o arquivo chamado Vagrant, com as seguintes configurações:
+Crie uma pasta com o nome do nosso projeto, no meu caso a pasta vai ser chamar confinan, depois dentro desse diretório, será necessário criar o arquivo chamado Vagrant, com as seguintes configurações:
 
 
 ```
@@ -35,11 +35,11 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
     end 
    ...
 ```
-Agora será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e vamos para as instalações do Tomcat e Mysql.
+Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e agora vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat. Para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+Começaremos pelo Tomcat. Para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
 
-Primeiro vamos adicionar os comandos para instalar a Open Jdk7 e o Tomcat 7:
+Primeiro vamos adicionar os comandos para instalar a Open Jdk 7 e o Tomcat 7:
 
 ```
 # apt-get update
@@ -56,8 +56,7 @@ package { ["openjdk-7-jre", "tomcat7"]:
 
 No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload` para adicionar as novas instalações 
 
-Agora iremos instalar o mysql, e configurar do mesmo jeito que fizemos com o tomcat
-
+E o nosso próximo passo será a instalação do mysql, para isso adicione o pacote do mysql para também ser instalado.
 
 ```
 # apt-get install mysql-server
@@ -67,7 +66,7 @@ package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
 }
 ```
 
-Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar
+Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar, portando adicione as seguintes configurações no arquivo web.pp:
 
 ```
 exec { "confinan":
