@@ -22,7 +22,7 @@ end
 
 Note que neste arquivo estamos configurando a box `ubuntu/trusty64` que representa o Ubuntu 64 bit e estamos dando o nome de `web` para a máquina. 
 
-Depois de criado o arquivo entre no terminal e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a máquina virtual e instale o ubuntu.
+Depois de criado este arquivo entre no terminal, entre na pasta do nosso projeto e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a máquina virtual e instale o ubuntu.
 
 Com a máquina instalada, você pode se conectar utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que já estamos dentro de um ambiente linux.
 
