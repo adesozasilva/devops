@@ -119,7 +119,7 @@ file { "/var/lib/tomcat7/webapps/ROOT.war":
 }
 ```
 
-E Finalmente rodaremos o comando `vagrant reload` e temos o nosso ambiente pronto e configurado :).
+E Finalmente rodaremos o comando `vagrant reload` e temos o nosso ambiente pronto e configurado.
 
 
 
