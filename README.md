@@ -22,11 +22,11 @@ end
 
 Note que neste arquivo estamos configurando a box `ubuntu/trusty64` que representa o Ubuntu 64 bit e estamos dando o nome de `web` para a máquina. 
 
-Depois de criado este arquivo entre no terminal, entre na pasta do nosso projeto e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a máquina virtual e instale o ubuntu.
+Depois de criado este arquivo abra no terminal, entre na pasta do nosso projeto e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a nossa máquina virtual com o Ubuntu.
 
-Com a máquina instalada, você pode se conectar utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que já estamos dentro de um ambiente linux.
+Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos em um ambiente linux.
 
-Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
+Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
    ...
@@ -35,9 +35,11 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
     end 
    ...
 ```
-Agora será necessário exceutar o comando `vagrant reload`, para adicionarmos a configuração do IP e assim temos a máquina instalada e funcionando, e vamos para as instalações do Tomcat e Mysql.
+Agora será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat. Para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos os comandos como se estivéssemos dentro do terminal no linux, então precisaremos configurar os comandos de instalação:
+Começaremos pelo Tomcat. Para isso iremos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+
+Primeiro vamos adicionar os comandos para instalar a Open Jdk7 e o Tomcat 7:
 
 ```
 # apt-get update
@@ -52,8 +54,7 @@ package { ["openjdk-7-jre", "tomcat7"]:
 }
 ```
 
-Note que para a instalação do tomcat, também foi necessário a instalação da jdk7, no caso estamos usando a Open JDK.
-
+No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload` para adicionar as novas instalações 
 
 Agora iremos instalar o mysql, e configurar do mesmo jeito que fizemos com o tomcat
 
@@ -105,7 +106,7 @@ service { "mysql":
 }
 ```
 
-Por último podemos adicionar a task para enviarmos o nosso arquivo war para o tomcat
+Por último vamos adicionar a task para enviarmos o nosso arquivo war para o tomcat, lembre-se que precisamos colocar o nosso arquivo .war dentro da pasta manifests
 
 ```
 file { "/var/lib/tomcat7/webapps/ROOT.war":
@@ -117,42 +118,8 @@ file { "/var/lib/tomcat7/webapps/ROOT.war":
     notify => Service["tomcat7"]
 }
 ```
-...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+E Finalmente rodaremos o comando `vagrant reload` e temos o nosso ambiente pronto e configurado.
 
 
 
