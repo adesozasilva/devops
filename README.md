@@ -6,7 +6,7 @@ Requisitos:
 
 - Baixar o vagrant no site: https://www.vagrantup.com/downloads.html
 
-- Será necessário também o download do Virtural Box(https://www.virtualbox.org/wiki/Downloads)
+- Será necessário também o download do Virtural Box (https://www.virtualbox.org/wiki/Downloads)
 
 
 Criar a pasta com o nome do nosso projeto, no meu caso a pasta vai ser chamar confinan, depois dentro desse diretório, será necessário criar o arquivo chamado Vagrant
