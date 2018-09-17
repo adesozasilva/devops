@@ -64,18 +64,18 @@ package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
 Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar
 
 ```
-exec { "controlefinanceiro":
-    command => "mysqladmin -uroot cre7ate controle_financeiro",
-    unless => "mysql -u root controle_financeiro",
+exec { "confinan":
+    command => "mysqladmin -uroot create confinan",
+    unless => "mysql -u root confinan",
     path => "/usr/bin",
     require => Service["mysql"]
 }
 
 exec { "mysql-password" :
-    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'controlefinanceiro'@'%' IDENTIFIED BY '123456';\" controlefinanceiro",
-    unless  => "mysql -ucontrolefinanceiro -p123456 controlefinanceiro",
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'confinan'@'%' IDENTIFIED BY '123456';\" confinan",
+    unless  => "mysql -uconfinan -p123456 confinan",
     path => "/usr/bin",
-    require => Exec["controlefinanceiro"]
+    require => Exec["confinan"]
 }
 ```
 
