@@ -39,8 +39,8 @@ exec { "mysql-password" :
     require => Exec["confinan"]
 }
 
-file { "/var/lib/tomcat7/webapps/controle-financeiro.war":
-    source => "/vagrant/manifests/controle-financeiro.war",
+file { "/var/lib/tomcat7/webapps/ROOT.war":
+    source => "/vagrant/manifests/ROOT.war",
     owner => "tomcat7",
     group => "tomcat7",
     mode => 0644,

@@ -103,8 +103,8 @@ service { "mysql":
 Por último podemos adicionar a task para enviarmos o nosso arquivo war para o tomcat
 
 ```
-file { "/var/lib/tomcat7/webapps/controle-financeiro.war":
-    source => "/vagrant/manifests/controle-financeiro.war",
+file { "/var/lib/tomcat7/webapps/ROOT.war":
+    source => "/vagrant/manifests/ROOT.war",
     owner => "tomcat7",
     group => "tomcat7",
     mode => 0644,
