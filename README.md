@@ -2,14 +2,16 @@
 
 Criando um ambiente virtual para aplicações Java com Tomcat e MySQL utilizando o Vagrant
 
-Requisitos:
+Requisitos
 
-- Baixar o vagrant no site: https://www.vagrantup.com/downloads.html
+Faça o download das seguintes ferramentas:
 
-- Será necessário também o download do Virtural Box (https://www.virtualbox.org/wiki/Downloads)
+- Vagrant - https://www.vagrantup.com/downloads.html
+
+- Virtural Box - https://www.virtualbox.org/wiki/Downloads
 
 
-Crie uma pasta com o nome do nosso projeto, no meu caso a pasta vai ser chamar financialcontrol, depois dentro desse diretório, será necessário criar o arquivo chamado Vagrantfile, com as seguintes configurações:
+Crie uma pasta com o nome do projeto, no meu caso será financialcontrol, depois dentro desse diretório será necessário criar um arquivo chamado Vagrantfile, com as seguintes configurações:
 
 
 ```
@@ -26,6 +28,9 @@ Depois de criado este arquivo abra no terminal, entre na pasta do nosso projeto 
 
 Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos em um ambiente linux.
 
+![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/vagrant_ssh.jpg)
+
+
 Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
@@ -38,6 +43,10 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
 Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e agora vamos para as instalações do Tomcat e Mysql.
 
 Começaremos pelo Tomcat. Para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+
+
+
+
 
 Primeiro vamos adicionar os comandos para instalar a Open Jdk 7 e o Tomcat 7:
 
