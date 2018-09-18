@@ -26,7 +26,7 @@ Note que neste arquivo estamos configurando a box `ubuntu/trusty64` que represen
 
 Depois de criado este arquivo abra no terminal, entre na pasta do nosso projeto e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a nossa máquina virtual com o Ubuntu.
 
-Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos em um ambiente linux.
+Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos dentro de um ambiente linux.
 
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/vagrant_ssh.jpg)
 
