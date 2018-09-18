@@ -28,6 +28,9 @@ Depois de criado este arquivo abra no terminal, entre na pasta do nosso projeto 
 
 Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos em um ambiente linux.
 
+![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/vagrant_ssh.jpg)
+
+
 Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
