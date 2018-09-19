@@ -26,12 +26,12 @@ Note que neste arquivo estamos configurando a box `ubuntu/trusty64` que represen
 
 Depois de criado este arquivo abra no terminal, entre na pasta do nosso projeto e rode o seguinte comando `vagrant up`, isso fará com que o vagrant crie a nossa máquina virtual com o Ubuntu.
 
-Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos em um ambiente linux.
+Com o comando finalizado, você pode se conectar à maquina utilizando o protocolo SSH, com comando `vagrant ssh`. Então podemos verificar que agora estamos dentro de um ambiente linux.
 
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/vagrant_ssh.jpg)
 
 
-Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
+Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip para facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
    ...
@@ -40,9 +40,9 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
     end 
    ...
 ```
-Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e agora vamos para as instalações do Tomcat e Mysql.
+Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando e agora vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat. Para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+Começaremos pelo Tomcat, para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
 
 
 
