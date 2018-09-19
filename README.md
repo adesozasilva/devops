@@ -150,7 +150,7 @@ file { "/var/lib/tomcat7/webapps/financial.war":
 }
 ```
 
-Finalmente rodando os comandos `vagrant destroy` e `vagrant up` temos o nosso ambiente montado com Ubuntu, Tomcat, Mysql e a nossa aplicação Java em menos de 15 minutos.
+Finalmente rodando os comandos `vagrant destroy` para apagar a nossa máquina e `vagrant up` para subir o ambiente com as novas configurações, temos o nosso ambiente montado com Ubuntu, Tomcat, Mysql e a nossa aplicação Java em menos de 15 minutos.
 
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/application.jpg)
 
