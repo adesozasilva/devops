@@ -40,7 +40,7 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
     end 
    ...
 ```
-Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando e agora vamos para as instalações do Tomcat e Mysql.
+Será necessário exeutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando e agora vamos para as instalações do Tomcat e Mysql.
 
 Para executarmos os comandos de instalações no linux, precisamos de uma ferramenta de provisionamento, aqui usaremos o Puppet, então precisamos adicioná-lo nas nossas configurações:
 
