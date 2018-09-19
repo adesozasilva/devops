@@ -77,9 +77,12 @@ package { ["openjdk-7-jre", "tomcat7"]:
 }
 ```
 
+
 No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload` para adicionar as novas instalações, e agora temos o tomcat instalado
 
+
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/tomcat.jpg)
+
 
 E o nosso próximo passo será a instalação do mysql, para isso adicione o pacote do mysql para também ser instalado.
 
