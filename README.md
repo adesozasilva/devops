@@ -42,13 +42,27 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
 ```
 Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando e agora vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat, para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+Para executarmos os comandos de instalações no linux, precisamos de uma ferramenta de provisionamento, aqui usaremos o Puppet, então precisamos adicioná-lo nas nossas configurações:
 
+```
+Vagrant.configure("2") do |config|
+    
+    config.vm.box = "ubuntu/trusty64"
+    
+    config.vm.define :web do |web_config|
+        web_config.vm.network "private_network", ip: "192.168.56.10"
+        
+            web_config.vm.provision "puppet" do |puppet|
+                puppet.manifest_file = "web.pp"
+            end 
+        end
+end
 
+```
 
+Note que a configuração do puppet aponta para um arquivo web.pp, portanto precisamos criar um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente.
 
-
-Primeiro vamos adicionar os comandos para instalar a Open Jdk 7 e o Tomcat 7:
+Depois de criado o nosso arquivo, vamos adicionar os comandos para instalar a Open Jdk 7 e o Tomcat 7:
 
 ```
 # apt-get update
@@ -63,7 +77,9 @@ package { ["openjdk-7-jre", "tomcat7"]:
 }
 ```
 
-No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload` para adicionar as novas instalações 
+No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload` para adicionar as novas instalações, e agora temos o tomcat instalado
+
+![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/tomcat.jpg)
 
 E o nosso próximo passo será a instalação do mysql, para isso adicione o pacote do mysql para também ser instalado.
 
