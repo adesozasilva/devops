@@ -31,7 +31,7 @@ Com o comando finalizado, você pode se conectar à maquina utilizando o protoco
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/vagrant_ssh.jpg)
 
 
-Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip, para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
+Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um ip para depois facilitar o nosso acesso à maquina, então adicionaremos o seguinte trecho no arquivo Vagrant
 
 ```
    ...
