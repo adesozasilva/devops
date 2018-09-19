@@ -84,7 +84,7 @@ No terminal dentro da pasta do projeto, rode novamente o comando `vagrant reload
 ![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/tomcat.jpg)
 
 
-E o nosso próximo passo será a instalação do mysql, para isso adicione o pacote do mysql para também ser instalado.
+O nosso próximo passo será a instalação do mysql, para isso adicione o pacote do mysql para também ser instalado.
 
 ```
 # apt-get install mysql-server
@@ -97,20 +97,24 @@ package { ["openjdk-7-jre", "tomcat7", "mysql-server"]:
 Agora com o mysql instalado é preciso criar o banco de dados que a nossa aplicação irá usar, portando adicione as seguintes configurações no arquivo web.pp:
 
 ```
-exec { "confinan":
-    command => "mysqladmin -uroot create confinan",
-    unless => "mysql -u root confinan",
+exec { "financial":
+    command => "mysqladmin -uroot create financial",
+    unless => "mysql -u root financial",
     path => "/usr/bin",
     require => Service["mysql"]
 }
 
 exec { "mysql-password" :
-    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'confinan'@'%' IDENTIFIED BY '123456';\" confinan",
-    unless  => "mysql -uconfinan -p123456 confinan",
+    command => "mysql -uroot -e \"GRANT ALL PRIVILEGES ON * TO 'financial'@'%' IDENTIFIED BY '123456';\" financial",
+    unless  => "mysql -ufinancial -p123456 financial",
     path => "/usr/bin",
-    require => Exec["confinan"]
+    require => Exec["financial"]
 }
 ```
+
+E podemos verificar se o mysql e o nosso banco de dados foi criado corretamente:
+
+![alt text](https://github.com/andersonszisk/devops/blob/master/vagrant/images/mysql.jpg)
 
 Com o nosso ambiente montado podemos automatizar o deploy da nossa aplicação, para isso é necessário garantir que os serviços do tomcat e mysql estejam funcionando:
 
@@ -136,8 +140,8 @@ service { "mysql":
 Por último vamos adicionar a task para enviarmos o nosso arquivo war para o tomcat, lembre-se que precisamos colocar o nosso arquivo .war dentro da pasta manifests
 
 ```
-file { "/var/lib/tomcat7/webapps/ROOT.war":
-    source => "/vagrant/manifests/ROOT.war",
+file { "/var/lib/tomcat7/webapps/financial.war":
+    source => "/vagrant/manifests/financial.war",
     owner => "tomcat7",
     group => "tomcat7",
     mode => 0644,
