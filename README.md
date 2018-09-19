@@ -40,9 +40,9 @@ Agora precisamos instalar o Tomcat e Mysql, mas antes disso iremos configurar um
     end 
    ...
 ```
-Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando, e agora vamos para as instalações do Tomcat e Mysql.
+Será necessário exceutar o comando `vagrant reload`, para adicionar a configuração do IP e assim temos a máquina com o nosso IP fixo funcionando e agora vamos para as instalações do Tomcat e Mysql.
 
-Começaremos pelo Tomcat. Para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
+Começaremos pelo Tomcat, para isso dentro do nosso projeto, crie um diretório chamado manifests e dentro dele o arquivo chamado web.pp, neste arquivo configuraremos todos os comandos de provisionamento para o ambiente. 
 
 
 
