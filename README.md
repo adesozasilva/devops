@@ -1,6 +1,6 @@
 # Devops
 
-Criando um ambiente virtual para aplicações Java com Tomcat e MySQL utilizando o Vagrant
+Criando um ambiente virtual para aplicações Java com Tomcat e MySQL utilizando o Vagrant em menos de 15 mintutos
 
 Requisitos
 
